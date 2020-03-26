@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7C80E9D8242CD67700D49C68 /* EdittingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C80E9D7242CD67700D49C68 /* EdittingView.swift */; };
 		7C91E27A2429B20E00D9C092 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C91E2792429B20E00D9C092 /* AppDelegate.swift */; };
 		7C91E27C2429B20E00D9C092 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C91E27B2429B20E00D9C092 /* SceneDelegate.swift */; };
 		7C91E27F2429B20E00D9C092 /* accountboook2.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7C91E27D2429B20E00D9C092 /* accountboook2.xcdatamodeld */; };
@@ -24,6 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7C80E9D7242CD67700D49C68 /* EdittingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdittingView.swift; sourceTree = "<group>"; };
 		7C91E2762429B20E00D9C092 /* accountboook2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = accountboook2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C91E2792429B20E00D9C092 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7C91E27B2429B20E00D9C092 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -87,6 +89,7 @@
 				7C91E2982429B33E00D9C092 /* BillDetail.swift */,
 				7CAF2C3C242B1CFD00827CD8 /* PickerView.swift */,
 				7C91E29C242A0D5700D9C092 /* BillType.swift */,
+				7C80E9D7242CD67700D49C68 /* EdittingView.swift */,
 			);
 			path = accountboook2;
 			sourceTree = "<group>";
@@ -178,6 +181,7 @@
 				7C91E2992429B33E00D9C092 /* BillDetail.swift in Sources */,
 				7C91E2952429B30200D9C092 /* BillRow.swift in Sources */,
 				7C91E27C2429B20E00D9C092 /* SceneDelegate.swift in Sources */,
+				7C80E9D8242CD67700D49C68 /* EdittingView.swift in Sources */,
 				7CAF2C3D242B1CFD00827CD8 /* PickerView.swift in Sources */,
 				7C91E2812429B20E00D9C092 /* ContentView.swift in Sources */,
 				7C91E27F2429B20E00D9C092 /* accountboook2.xcdatamodeld in Sources */,

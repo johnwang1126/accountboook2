@@ -11,8 +11,8 @@ import SwiftUI
 struct ContentView: View {
     @Environment(\.managedObjectContext) var moc
     @FetchRequest(entity: Bill.entity(), sortDescriptors: [
-        NSSortDescriptor(keyPath: \Bill.amount, ascending: true),
         NSSortDescriptor(keyPath: \Bill.date, ascending: true),
+        NSSortDescriptor(keyPath: \Bill.amount, ascending: true),
         NSSortDescriptor(keyPath: \Bill.name, ascending: true),
         NSSortDescriptor(keyPath: \Bill.info, ascending: false),
         NSSortDescriptor(keyPath: \Bill.imagename, ascending: false),
@@ -36,7 +36,10 @@ struct ContentView: View {
         NavigationView{
             List{
                 ForEach(billItems, id:\.date){ bill in
-                    NavigationLink(destination: BillDetail(name: bill.name ?? "", info: bill.info ?? "", amount: bill.amount, date: bill.date ?? Date(), imagename: bill.imagename ?? "yensign.circle")){
+                    NavigationLink(destination: EdittingView(bill: bill)
+                        /*
+                        BillDetail(name: bill.name ?? "", info: bill.info ?? "", amount: bill.amount, date: bill.date ?? Date(), imagename: bill.imagename ?? "yensign.circle")*/)
+                    {
                         BillRow(name: bill.name ?? "", info: bill.info ?? "", amount: bill.amount, date: bill.date ?? Date(), imagename: bill.imagename ?? "yensign.circle")
                         
                     }

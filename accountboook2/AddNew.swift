@@ -60,11 +60,11 @@ struct AddNew: View {
                 self.amount = ""
                 
             }){
-                Text("确认")
+                Text("记账")
                 
-                .font(.system(size: 23))
+                
                 .foregroundColor((  self.info.count > 0 && self.amount.count > 0) ?
-                    Color.green :
+                    Color.blue :
                     Color.secondary)
             }
             
