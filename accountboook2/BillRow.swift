@@ -15,6 +15,7 @@ struct BillRow: View {
     var date: Date
     var imagename: String
     
+    
     var body: some View {
         ZStack{
             Rectangle().fill(Color("rect_fill"))
@@ -28,14 +29,21 @@ struct BillRow: View {
                 Image(systemName: imagename)
                     .padding(.leading)
                     .font(.system(size: 23))
-                    .foregroundColor(.green)
+                    .foregroundColor(
+                        amount > 0 ?
+                            Color.orange : Color.green)
                 Spacer()
                     .frame(width:14)
                 VStack(alignment: .leading) {
                     Text(name)
-                    Text(info)
-                        .font(.subheadline)
-                        .foregroundColor(.secondary)
+                    HStack {
+                        Text(info)
+                            .font(.subheadline)
+                            .foregroundColor(.secondary)
+                        Text(dateFormatter.string(from: date))
+                            .font(.subheadline)
+                            .foregroundColor(.secondary)
+                    }
                 }
                 Spacer()
                 Text(String(format: "%.2f", amount))
@@ -65,3 +73,11 @@ struct BillRow_Previews: PreviewProvider {
         
     }
 }
+
+var dateFormatter: DateFormatter {
+    let formatter = DateFormatter()
+    formatter.locale = Locale(identifier: "en_US")
+    formatter.dateFormat = " yy/MM/dd"
+    return formatter
+}
+    

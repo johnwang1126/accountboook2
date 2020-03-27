@@ -46,7 +46,7 @@ struct EdittingView: View {
                     
                     TextField("金额: \(String(self.bill.amount))",text: $amount).padding()
                                    .keyboardType(.decimalPad)
-                    TextField("备注： \(String(self.bill.info ?? ""))",text: $info).padding()
+                    TextField("备注: \(String(self.bill.info ?? ""))",text: $info).padding()
                     
                     if self.ioe{
                         incPicker(select: $typeIndex)
@@ -54,7 +54,9 @@ struct EdittingView: View {
                     else{
                         expPicker(select: $typeIndex)
                     }
-                    
+                    DatePicker(selection: $date, displayedComponents: .date){
+                        Text("日期")
+                    }
                     
                     Button(action: {
                         
@@ -92,14 +94,7 @@ struct EdittingView: View {
                 
                 
             }
-                
-                
-                
-                
-                    
-               
-            
-           
+       
         }
 }
 /*

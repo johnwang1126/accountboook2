@@ -22,8 +22,12 @@ struct BillDetail: View {
             VStack {
                 HStack {
                     Image(systemName: imagename)
-                       
+                    .font(.system(size: 23))
+                    .foregroundColor(
+                    amount > 0 ?
+                        Color.orange : Color.green)
                     Text(name)
+                        .font(.system(size: 23))
                 }
                 Text(String(format: "%.2f",amount))
                     .font(.largeTitle)
@@ -31,12 +35,17 @@ struct BillDetail: View {
             
             Spacer()
                 .frame(height:40)
-            Text("备注：\(info)")
-                .padding()
-            Text("创建日期：\(date)")
-                .padding(.horizontal)
+            VStack(alignment: .leading) {
+                Text("备注：\(info)")
+                    .padding([.leading, .bottom, .trailing])
+                Text("日期：\(dateFormatter.string(from: date))")
+                    .padding(.horizontal)
+            }
+           
+                
         }
         .offset(x: 0, y: -160)
+        
     }
     
     

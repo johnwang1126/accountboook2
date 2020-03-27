@@ -35,6 +35,9 @@ struct AddNew: View {
                     expPicker(select: $typeIndex)
                 }
                 
+                DatePicker(selection: $date, displayedComponents: .date){
+                    Text("日期")
+                }
                     
                
             }
