@@ -56,24 +56,25 @@ struct ContentView: View {
             VStack {
 //                total income, total expense and budget
                 HStack{
+                    Spacer()
                     HStack{
                         Text("本月收入：").foregroundColor(.secondary)
                             .font(.subheadline)
                         Text(String(format: "%.0f", incomeSum))
                             .foregroundColor(.orange)
                     }
-                    .padding(.horizontal)
+                    Spacer()
                     HStack {
                         Text("本月支出：").foregroundColor(.secondary)
                             .font(.subheadline)
                         Text(String(format: "%.0f", expenseSum))
                             .foregroundColor(.green)
                     }
-                    .padding(.horizontal)
+                    Spacer()
                     NavigationLink(destination: Budget()) {
                                Text("预算")
                             }
-                    .padding(.horizontal)
+                    Spacer()
                 }
 //                list of all bills
                 List{

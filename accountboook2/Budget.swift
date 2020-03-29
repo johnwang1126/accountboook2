@@ -37,14 +37,10 @@ struct Budget: View {
                 Spacer()
                 VStack {
                     HStack{
-                        
-                        Slider(value: $budget, in: 2000...20000, step: 100)
-                        
-                    }
-                    .padding(.horizontal)
-                    HStack{
                         Text("月预算：\(Int(budget))")
                             .foregroundColor(.secondary)
+                            .padding(.trailing)
+                        
                         Button(action: {
                             self.percentage = (self.sumMonth/self.budget) * 100
                             
@@ -52,7 +48,15 @@ struct Budget: View {
                         {
                             Text("确认")
                         }
+                        .padding(.leading)
                     }
+                    HStack{
+                        
+                        Slider(value: $budget, in: 2000...20000, step: 100)
+                        
+                    }
+                    .padding(.all)
+                    
                   
                     
                 }
@@ -71,7 +75,7 @@ struct Label: View {
     var percentage : Double = 0
     var body: some View{
         ZStack{
-            Text(String(format: "%.0f", percentage)).font(.system(size: 65)).fontWeight(.heavy)
+            Text("\(Int(percentage))%").font(.system(size: 65)).fontWeight(.heavy)
         }
     }
     
