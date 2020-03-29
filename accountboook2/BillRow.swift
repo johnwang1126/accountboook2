@@ -74,10 +74,3 @@ struct BillRow_Previews: PreviewProvider {
     }
 }
 
-var dateFormatter: DateFormatter {
-    let formatter = DateFormatter()
-    formatter.locale = Locale(identifier: "en_US")
-    formatter.dateFormat = " yy/MM/dd"
-    return formatter
-}
-    

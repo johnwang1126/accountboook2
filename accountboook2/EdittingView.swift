@@ -19,19 +19,16 @@ struct EdittingView: View {
     
      
     @State private var typeIndex = 0
-     
-    @State var ioe = false //true for income, false for expense
+    @State private var ioe:Int = 0 //0 for expense,1 for income
     @State var edit = false
     
     var body: some View {
-        
-       
-            
-            ZStack{
+          ZStack{
+//            show bill detail by default
                 BillDetail(name: bill.name ?? "", info: bill.info ?? "", amount: bill.amount, date: bill.date ?? Date(), imagename: bill.imagename ?? "yensign.circle")
                 .blur(radius: self.edit ? 10 : 0)
                 .animation(.spring())
-                
+//                editting button
                 Button(action:{
                     self.edit = true
                 }){
@@ -39,16 +36,19 @@ struct EdittingView: View {
                 }
                 .blur(radius: self.edit ? 10 : 0)
                 
-                
+//                editting view that are similiar to that of adding
                 
                 VStack{
-                    Toggle(self.ioe ? "收入" : "支出", isOn: self.$ioe)
+                    Picker(selection: $ioe, label: Text("")) {
+                        Text("支出").tag(0)
+                        Text("收入").tag(1)
+                    }.pickerStyle(SegmentedPickerStyle())
                     
                     TextField("金额: \(String(self.bill.amount))",text: $amount).padding()
                                    .keyboardType(.decimalPad)
                     TextField("备注: \(String(self.bill.info ?? ""))",text: $info).padding()
                     
-                    if self.ioe{
+                    if self.ioe == 1{
                         incPicker(select: $typeIndex)
                     }
                     else{
@@ -60,7 +60,7 @@ struct EdittingView: View {
                     
                     Button(action: {
                         
-                        if self.ioe{
+                        if self.ioe == 1{
                             self.bill.name = incKeys[self.typeIndex]
                             if (self.amount.count > 0){
                                 self.bill.amount = Double(self.amount)!
@@ -97,10 +97,3 @@ struct EdittingView: View {
        
         }
 }
-/*
-struct EdittingView_Previews: PreviewProvider {
-    static var previews: some View {
-        EdittingView(bill: Bill())
-    }
-}*/
-

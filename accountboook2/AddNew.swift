@@ -15,26 +15,31 @@ struct AddNew: View {
     @State private var info : String = ""
     @State private var amount : String = ""
     @State private var date : Date = Date()
-   
-    
     @State private var typeIndex = 0
-    
-    @State var ioe = false //true for income, false for expense
+    @State private var ioe:Int = 0 //0 for expense,1 for income
+
     var body: some View {
         NavigationView {
             
             Form {
-                
-                Toggle(self.ioe ? "收入" : "支出", isOn: self.$ioe)
+//                select income or expense
+                Picker(selection: $ioe, label: Text("")) {
+                    Text("支出").tag(0)
+                    Text("收入").tag(1)
+                }.pickerStyle(SegmentedPickerStyle())
+
+//                input amount and info
                 amount_and_info(amount: $amount, info: $info)
                 
-                if self.ioe{
+//                select bill type
+                if self.ioe == 1{
                     incPicker(select: $typeIndex)
                 }
                 else{
                     expPicker(select: $typeIndex)
                 }
                 
+//                select bill date
                 DatePicker(selection: $date, displayedComponents: .date){
                     Text("日期")
                 }
@@ -44,7 +49,7 @@ struct AddNew: View {
            
             .navigationBarItems(trailing: Button(action: {
                 let add = Bill(context: self.moc)
-                if self.ioe{
+                if self.ioe == 1{
                     add.name = incKeys[self.typeIndex]
                     add.amount = Double(self.amount)!
                 }
@@ -64,9 +69,7 @@ struct AddNew: View {
                 
             }){
                 Text("记账")
-                
-                
-                .foregroundColor((  self.info.count > 0 && self.amount.count > 0) ?
+               .foregroundColor((  self.info.count > 0 && self.amount.count > 0) ?
                     Color.blue :
                     Color.secondary)
             }

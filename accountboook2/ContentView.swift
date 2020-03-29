@@ -18,7 +18,26 @@ struct ContentView: View {
         NSSortDescriptor(keyPath: \Bill.imagename, ascending: false),
     ]) var billItems: FetchedResults<Bill>
     
-    @State private var save : Bool = false
+    //get the income of current month
+    @FetchRequest(entity: Bill.entity(), sortDescriptors: [
+        NSSortDescriptor(keyPath: \Bill.date, ascending: false)
+    ],
+                  predicate: NSPredicate(format: "date > %@ AND amount > %f", Date().startOfMonth() as NSDate, 0)
+    ) var incomeBills: FetchedResults<Bill>
+    var incomeSum: Double {
+        incomeBills.reduce(0) { $0 + $1.amount}
+    }
+    
+    //get the expense of current month
+    @FetchRequest(entity: Bill.entity(), sortDescriptors: [
+        NSSortDescriptor(keyPath: \Bill.date, ascending: false)
+    ],
+                  predicate: NSPredicate(format: "date > %@ AND amount < %f", Date().startOfMonth() as NSDate, 0)
+    ) var expenseBills: FetchedResults<Bill>
+    var expenseSum: Double {
+        expenseBills.reduce(0) { $0 + $1.amount}
+    }
+    
     
     func remove(at offsets : IndexSet) {
         for index in offsets {
@@ -28,28 +47,55 @@ struct ContentView: View {
         // To remove for the core data
         try? self.moc.save()
     }
-    
-    
+  
+    @State private var save : Bool = false
     
     var body: some View {
         
         NavigationView{
-            List{
-                ForEach(billItems, id:\.date){ bill in
-                    NavigationLink(destination: EdittingView(bill: bill))
-                    {
-                        BillRow(name: bill.name ?? "", info: bill.info ?? "", amount: bill.amount, date: bill.date ?? Date(), imagename: bill.imagename ?? "yensign.circle")
-                        
+            VStack {
+//                total income, total expense and budget
+                HStack{
+                    HStack{
+                        Text("本月收入：").foregroundColor(.secondary)
+                            .font(.subheadline)
+                        Text(String(format: "%.0f", incomeSum))
+                            .foregroundColor(.orange)
                     }
-                    
-                }.onDelete(perform: remove)
-            }.navigationBarTitle("账单")
-                .navigationBarItems(
-                    trailing: Button(action: { self.save.toggle()}) { Image(systemName: "plus.circle.fill")
-                        .font(.system(size: 34))
-                })
-            .sheet(isPresented: $save) {
-                AddNew().environment(\.managedObjectContext, self.moc)
+                    .padding(.horizontal)
+                    HStack {
+                        Text("本月支出：").foregroundColor(.secondary)
+                            .font(.subheadline)
+                        Text(String(format: "%.0f", expenseSum))
+                            .foregroundColor(.green)
+                    }
+                    .padding(.horizontal)
+                    NavigationLink(destination: Budget()) {
+                               Text("预算")
+                            }
+                    .padding(.horizontal)
+                }
+//                list of all bills
+                List{
+                    ForEach(billItems, id:\.date){ bill in
+                        NavigationLink(destination: EdittingView(bill: bill))
+                        {
+                            BillRow(name: bill.name ?? "", info: bill.info ?? "", amount: bill.amount, date: bill.date ?? Date(), imagename: bill.imagename ?? "yensign.circle")
+                            
+                        }
+                        
+                    }.onDelete(perform: remove)
+                }.navigationBarTitle("账单")
+                    .navigationBarItems(
+                        trailing: Button(action: { self.save.toggle()}) { Image(systemName: "plus.circle.fill")
+                            .font(.system(size: 34))
+                    })
+                .sheet(isPresented: $save) {
+                    AddNew().environment(\.managedObjectContext, self.moc)
+                }
+                
+                
+                
             }
                 
         }

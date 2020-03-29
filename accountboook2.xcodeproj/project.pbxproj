@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7C7B5EB12430431100562EF6 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C7B5EB02430431100562EF6 /* Date.swift */; };
+		7C7B5EB3243059AC00562EF6 /* Budget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C7B5EB2243059AC00562EF6 /* Budget.swift */; };
 		7C80E9D8242CD67700D49C68 /* EdittingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C80E9D7242CD67700D49C68 /* EdittingView.swift */; };
 		7C91E27A2429B20E00D9C092 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C91E2792429B20E00D9C092 /* AppDelegate.swift */; };
 		7C91E27C2429B20E00D9C092 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C91E27B2429B20E00D9C092 /* SceneDelegate.swift */; };
@@ -25,6 +27,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7C7B5EB02430431100562EF6 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
+		7C7B5EB2243059AC00562EF6 /* Budget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Budget.swift; sourceTree = "<group>"; };
 		7C80E9D7242CD67700D49C68 /* EdittingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdittingView.swift; sourceTree = "<group>"; };
 		7C91E2762429B20E00D9C092 /* accountboook2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = accountboook2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C91E2792429B20E00D9C092 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -90,6 +94,8 @@
 				7CAF2C3C242B1CFD00827CD8 /* PickerView.swift */,
 				7C91E29C242A0D5700D9C092 /* BillType.swift */,
 				7C80E9D7242CD67700D49C68 /* EdittingView.swift */,
+				7C7B5EB02430431100562EF6 /* Date.swift */,
+				7C7B5EB2243059AC00562EF6 /* Budget.swift */,
 			);
 			path = accountboook2;
 			sourceTree = "<group>";
@@ -184,6 +190,8 @@
 				7C80E9D8242CD67700D49C68 /* EdittingView.swift in Sources */,
 				7CAF2C3D242B1CFD00827CD8 /* PickerView.swift in Sources */,
 				7C91E2812429B20E00D9C092 /* ContentView.swift in Sources */,
+				7C7B5EB12430431100562EF6 /* Date.swift in Sources */,
+				7C7B5EB3243059AC00562EF6 /* Budget.swift in Sources */,
 				7C91E27F2429B20E00D9C092 /* accountboook2.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
